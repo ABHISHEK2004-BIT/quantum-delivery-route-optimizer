@@ -1,0 +1,10 @@
+fastapi>=0.110,<1
+uvicorn[standard]>=0.27
+pydantic>=2.6
+numpy>=1.26
+requests>=2.31
+geopy>=2.4
+qiskit>=1.2
+qiskit-algorithms>=0.3.1
+qiskit-optimization>=0.6
+scipy>=1.11

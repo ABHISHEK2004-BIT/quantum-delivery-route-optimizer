@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171b35">
+  <title>RouteLab | Quantum Delivery Optimizer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="kicker">HYBRID OPTIMIZATION WORKSPACE</div>
+      <h1>RouteLab <span>/</span> Delivery Optimizer</h1>
+      <p>Plan a delivery loop with real road distances. Compare a fast classical route with an experimental QAOA solver.</p>
+      <div class="pills"><span>OpenStreetMap</span><span>Classical optimization</span><span>QAOA experiment</span></div>
+    </div>
+  </header>
+  <main class="layout">
+    <section class="panel controls">
+      <div class="section-heading"><span class="number">01</span><div><h2>Build your route</h2><p>Select a depot and delivery stops.</p></div></div>
+      <label for="depot">Depot / starting address</label>
+      <div class="search-row"><input id="depot" placeholder="e.g. CSMT, Mumbai" autocomplete="off"><button data-search="depot">Search</button></div>
+      <div id="depot-results" class="results"></div>
+      <div class="location-chip" id="depot-selected">No depot selected</div>
+      <button id="use-location" class="secondary full">◎ Use my current location</button>
+      <div class="divider"></div>
+      <div class="stop-header"><h3>Delivery stops</h3><select id="stop-count" aria-label="Number of stops"><option value="2">2 stops</option><option value="3" selected>3 stops</option><option value="4">4 stops</option><option value="5">5 stops</option><option value="6">6 stops</option></select></div>
+      <div id="stops"></div>
+      <div class="button-stack">
+        <button id="demo" class="secondary full">Load Mumbai demo locations</button>
+        <button id="optimize" class="primary full">⚡ Generate optimized route</button>
+      </div>
+      <p class="fineprint">Road distances use the public OSRM demo service. Internet connection required.</p>
+    </section>
+    <section class="workspace">
+      <div class="stats">
+        <article class="stat"><span>LOCATIONS</span><strong id="stat-locations">—</strong><small>Depot + stops</small></article>
+        <article class="stat"><span>ROAD DISTANCE</span><strong id="stat-distance">—</strong><small>Optimized tour</small></article>
+        <article class="stat"><span>CLASSICAL TIME</span><strong id="stat-time">—</strong><small>Solver runtime</small></article>
+      </div>
+      <section class="panel map-panel"><div class="map-heading"><div><h2>Route map</h2><p id="map-subtitle">Choose locations to preview your delivery area.</p></div><span class="live-dot">LIVE MAP</span></div><div id="map"></div></section>
+      <section class="panel result-panel">
+        <div class="map-heading"><div><h2>Route summary</h2><p>Recommended classical route</p></div><span class="tag">CLASSICAL</span></div>
+        <div id="route-order" class="route-order empty">Your optimized stop order will appear here.</div>
+        <div class="result-actions"><button id="qaoa" class="secondary" disabled>⚛ Run QAOA comparison</button><span id="qaoa-status" class="status">QAOA is optional and may take longer.</span></div>
+        <div id="qaoa-result" class="qaoa-result hidden"></div>
+      </section>
+      <div id="notice" class="notice hidden" role="status"></div>
+    </section>
+  </main>
+  <footer>RouteLab · Educational hybrid quantum-classical optimization prototype · No quantum advantage is implied.</footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/main.js"></script>
+</body>
+</html>
